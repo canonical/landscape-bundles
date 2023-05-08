@@ -1,12 +1,14 @@
-description: Landscape Scalable
-name: landscape-scalable
-series: jammy
+description: Landscape Dense Maas
+name: landscape-dense-maas
+series: focal
 applications:
   haproxy:
-    series: focal
     charm: ch:haproxy
     channel: stable
+    revision: 66
     num_units: 1
+    to:
+    - lxd:0
     expose: true
     options:
       default_timeouts: queue 60000, connect 5000, client 120000, server 120000
@@ -15,18 +17,34 @@ applications:
       ssl_cert: SELFSIGNED
   landscape-server:
     charm: ch:landscape-server
-    channel: edge
+    channel: stable
+    revision: 79
     num_units: 1
+    to:
+    - lxd:0
     constraints: mem=4096
   postgresql:
     charm: ch:postgresql
-    channel: 14/edge
+    channel: latest
+    revision: 270
     num_units: 1
+    to:
+    - lxd:0
+    options:
+      extra_packages: python*-apt postgresql-contrib postgresql-.*-debversion postgresql-plpython.*
+      max_connections: 500
+      max_prepared_transactions: 500
     constraints: mem=2048
   rabbitmq-server:
-    channel: latest/edge
     charm: ch:rabbitmq-server
+    channel: stable
+    revision: 123
     num_units: 1
+    to:
+    - lxd:0
+machines:
+  "0":
+    constraints: mem=4096 root-disk=30720
 relations:
     - [landscape-server, rabbitmq-server]
     - [landscape-server, haproxy]

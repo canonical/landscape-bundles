@@ -1,6 +1,7 @@
 description: Landscape Scalable
 name: landscape-scalable
 series: focal
+docs: https://discourse.charmhub.io/t/landscape-charm-bundles/10638
 applications:
   haproxy:
     charm: ch:haproxy

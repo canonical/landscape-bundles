@@ -19,7 +19,7 @@ applications:
   landscape-server:
     charm: ch:landscape-server
     channel: stable
-    revision: 79
+    revision: 87
     num_units: 1
     to:
     - lxd:0

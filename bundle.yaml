@@ -1,12 +1,12 @@
 description: Landscape Scalable
 name: landscape-scalable
-series: focal
+series: jammy
 docs: https://discourse.charmhub.io/t/landscape-charm-bundles/10638
 applications:
   haproxy:
     charm: ch:haproxy
     channel: stable
-    revision: 66
+    revision: 75
     num_units: 1
     expose: true
     options:
@@ -17,14 +17,13 @@ applications:
   landscape-server:
     charm: ch:landscape-server
     channel: stable
-    series: jammy
-    revision: 102
+    revision: 107
     num_units: 1
     constraints: mem=4096
   postgresql:
     charm: ch:postgresql
-    channel: latest
-    revision: 270
+    channel: latest/stable
+    revision: 345
     num_units: 1
     options:
       extra_packages: python*-apt postgresql-contrib postgresql-.*-debversion postgresql-plpython.*
@@ -33,8 +32,8 @@ applications:
     constraints: mem=2048
   rabbitmq-server:
     charm: ch:rabbitmq-server
-    channel: stable
-    revision: 123
+    channel: 3.9/stable
+    revision: 183
     num_units: 1
 relations:
     - [landscape-server, rabbitmq-server]

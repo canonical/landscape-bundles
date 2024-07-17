@@ -17,18 +17,23 @@ applications:
   landscape-server:
     charm: ch:landscape-server
     channel: stable
-    revision: 107
+    revision: 111
     num_units: 1
     constraints: mem=4096
+    options:
+      landscape_ppa: ppa:landscape/self-hosted-24.04
   postgresql:
     charm: ch:postgresql
-    channel: latest/stable
-    revision: 345
+    channel: 14/stable
+    revision: 429
     num_units: 1
     options:
-      extra_packages: python*-apt postgresql-contrib postgresql-.*-debversion postgresql-plpython.*
-      max_connections: 500
-      max_prepared_transactions: 500
+      plugin_plpython3u_enable: true
+      plugin_ltree_enable: true
+      plugin_intarray_enable: true
+      plugin_debversion_enable: true
+      plugin_pg_trgm_enable: true
+      experimental_max_connections: 500
     constraints: mem=2048
   rabbitmq-server:
     charm: ch:rabbitmq-server

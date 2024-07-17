@@ -26,8 +26,17 @@ applications:
     num_units: 1
     constraints: mem=2048
     options:
-      plugin_plpython3u_enable: True
-      experimental_max_connections: 500
+      plugin_plpython3u_enable: true
+      plugin_ltree_enable: true
+      plugin_intarray_enable: true
+      plugin_debversion_enable: true
+      plugin_pg_trgm_enable: true
+  pgbouncer-lds:
+    charm: pgbouncer
+    channel: 1/edge
+    options:
+      pool_mode: transaction
+      max_db_connections: 40
   rabbitmq-server:
     channel: latest/edge
     charm: ch:rabbitmq-server
@@ -37,4 +46,6 @@ applications:
 relations:
     - [landscape-server, rabbitmq-server]
     - [landscape-server, haproxy]
-    - [landscape-server:db, postgresql:db-admin]
+    - [pgbouncer-lds:backend-database, postgresql:database]
+    - [pgbouncer-lds:db-admin, landscape-server:db]
+

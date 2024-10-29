@@ -1,14 +1,11 @@
-# This is a basic workflow to help you get started with Actions
-
 name: CI
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "scalable-stable" branch
   push:
-    branches: [ "scalable-stable", "scalable-edge" ]
+    branches: [ "scalable-stable"]
   pull_request:
-    branches: [ "scalable-stable", "scalable-edge" ]
+    branches: [ "scalable-stable" ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -25,12 +22,8 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
       - name: Install Charmcraft
-        run: sudo snap install charmcraft --classic
+        run: sudo snap install charmcraft --channel 2.x/stable --classic
 
       - name: Pack with Charmcraft
         run: charmcraft pack

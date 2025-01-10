@@ -6,6 +6,7 @@ applications:
   haproxy:
     charm: ch:haproxy
     channel: stable
+    constrains: arch=arm64
     revision: 75
     num_units: 1
     expose: true
@@ -19,13 +20,13 @@ applications:
     channel: stable
     revision: 124
     num_units: 1
-    constraints: mem=4096
+    constraints: mem=4096 arch=arm64
     options:
       landscape_ppa: ppa:landscape/self-hosted-24.04
   postgresql:
     charm: ch:postgresql
-    channel: 14/stable
-    revision: 468
+    channel: 14/candidate
+    revision: 529
     num_units: 1
     options:
       plugin_plpython3u_enable: true
@@ -34,10 +35,11 @@ applications:
       plugin_debversion_enable: true
       plugin_pg_trgm_enable: true
       experimental_max_connections: 500
-    constraints: mem=2048
+    constraints: mem=2048 arch=arm64
   rabbitmq-server:
     charm: ch:rabbitmq-server
     channel: 3.9/stable
+    constrains: arch=arm64
     revision: 188
     num_units: 1
     options:

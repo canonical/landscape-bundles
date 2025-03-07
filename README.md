@@ -4,6 +4,8 @@ Overview
 This bundle will deploy [Landscape On-Premises](https://landscape.canonical.com/landscape-features).
 There are three slightly different versions of this bundle, explained below.
 
+See the full [Landscape documentation](https://ubuntu.com/landscape/docs) for more details.
+
 Dense Deployment - MAAS
 =======================
 `landscape-dense-maas` - For MAAS where LXDs can be addressed externally, you
